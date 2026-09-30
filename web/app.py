@@ -18,7 +18,7 @@ MONGO_HOST = os.getenv("MONGO_HOST", "mongodb")
 MONGO_PORT = os.getenv("MONGO_PORT", "27017")
 
 APP_ENV = os.getenv("APP_ENV", "local")
-APP_VERSION = os.getenv("APP_VERSION", "v1.1")
+APP_VERSION = os.getenv("APP_VERSION", "v1.2")
 HOSTNAME = os.getenv("HOSTNAME", "unknown")
 
 REQUEST_COUNT = Counter(
