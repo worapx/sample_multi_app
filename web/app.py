@@ -5,14 +5,20 @@ from flask import Flask, request, render_template
 from pymongo import MongoClient
 from datetime import datetime, UTC
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
+
+app.wsgi_app = ProxyFix(
+    app.wsgi_app,
+    x_for=1
+)
 
 MONGO_HOST = os.getenv("MONGO_HOST", "mongodb")
 MONGO_PORT = os.getenv("MONGO_PORT", "27017")
 
 APP_ENV = os.getenv("APP_ENV", "local")
-APP_VERSION = os.getenv("APP_VERSION", "v1.0")
+APP_VERSION = os.getenv("APP_VERSION", "v1.1")
 HOSTNAME = os.getenv("HOSTNAME", "unknown")
 
 REQUEST_COUNT = Counter(
